@@ -1,0 +1,214 @@
+{
+	"info": {
+		"name": "School Management APIs",
+		"description": "APIs to manage schools and calculate geographical distances.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add School",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Greenwood High\",\n  \"address\": \"123 Education Lane, NY\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/addSchool",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addSchool"
+					]
+				}
+			},
+			"response": [
+                {
+                    "name": "Success (201 Created)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Greenwood High\",\n  \"address\": \"123 Education Lane, NY\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/addSchool",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "addSchool"
+                            ]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "body": "{\n  \"message\": \"School added successfully\",\n  \"schoolId\": 1\n}"
+                },
+                {
+                    "name": "Validation Error (400 Bad Request)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"\",\n  \"address\": \"123 Education Lane, NY\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/addSchool",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "addSchool"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "body": "{\n  \"error\": \"Invalid name. It must be a non-empty string.\"\n}"
+                }
+            ]
+		},
+		{
+			"name": "List Schools by Proximity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/listSchools?latitude=40.730610&longitude=-73.935242",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "40.730610",
+							"description": "User's latitude"
+						},
+						{
+							"key": "longitude",
+							"value": "-73.935242",
+							"description": "User's longitude"
+						}
+					]
+				}
+			},
+			"response": [
+                {
+                    "name": "Success (200 OK)",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/listSchools?latitude=40.730610&longitude=-73.935242",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "listSchools"
+                            ],
+                            "query": [
+                                {
+                                    "key": "latitude",
+                                    "value": "40.730610"
+                                },
+                                {
+                                    "key": "longitude",
+                                    "value": "-73.935242"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Greenwood High\",\n    \"address\": \"123 Education Lane, NY\",\n    \"latitude\": 40.7128,\n    \"longitude\": -74.0060,\n    \"distance\": 6.29\n  }\n]"
+                },
+                {
+                    "name": "Validation Error (400 Bad Request)",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3000/listSchools",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "listSchools"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "body": "{\n  \"error\": \"Invalid coordinates. Please provide latitude and longitude as valid numbers in the query.\"\n}"
+                }
+            ]
+		}
+	]
+}

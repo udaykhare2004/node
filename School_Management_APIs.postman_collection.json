@@ -20,7 +20,7 @@
 					"raw": "{\n  \"name\": \"Greenwood High\",\n  \"address\": \"123 Education Lane, NY\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/addSchool",
+					"raw": "https://node-rfbi.onrender.com/addSchool",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -47,7 +47,7 @@
                             "raw": "{\n  \"name\": \"Greenwood High\",\n  \"address\": \"123 Education Lane, NY\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
                         },
                         "url": {
-                            "raw": "http://localhost:3000/addSchool",
+                            "raw": "https://node-rfbi.onrender.com/addSchool",
                             "protocol": "http",
                             "host": [
                                 "localhost"
@@ -85,7 +85,7 @@
                             "raw": "{\n  \"name\": \"\",\n  \"address\": \"123 Education Lane, NY\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
                         },
                         "url": {
-                            "raw": "http://localhost:3000/addSchool",
+                            "raw": "https://node-rfbi.onrender.com/addSchool",
                             "protocol": "http",
                             "host": [
                                 "localhost"
@@ -116,7 +116,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/listSchools?latitude=40.730610&longitude=-73.935242",
+					"raw": "https://node-rfbi.onrender.com/listSchools?latitude=40.730610&longitude=-73.935242",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -146,7 +146,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "http://localhost:3000/listSchools?latitude=40.730610&longitude=-73.935242",
+                            "raw": "https://node-rfbi.onrender.com/listSchools?latitude=40.730610&longitude=-73.935242",
                             "protocol": "http",
                             "host": [
                                 "localhost"
@@ -185,7 +185,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "http://localhost:3000/listSchools",
+                            "raw": "https://node-rfbi.onrender.com/listSchools",
                             "protocol": "http",
                             "host": [
                                 "localhost"

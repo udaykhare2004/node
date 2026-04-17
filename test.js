@@ -1,7 +1,7 @@
 async function test() {
   try {
     console.log('--- Testing /addSchool ---');
-    const addRes1 = await fetch('http://localhost:3000/addSchool', {
+    const addRes1 = await fetch('https://node-rfbi.onrender.com/addSchool', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -13,7 +13,7 @@ async function test() {
     });
     console.log('Add School 1 Response:', await addRes1.json());
 
-    const addRes2 = await fetch('http://localhost:3000/addSchool', {
+    const addRes2 = await fetch('https://node-rfbi.onrender.com/addSchool', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -27,7 +27,7 @@ async function test() {
 
     console.log('\n--- Testing /listSchools ---');
     console.log('Finding schools near 37.6, -122.2');
-    const listRes = await fetch('http://localhost:3000/listSchools?latitude=37.6&longitude=-122.2');
+    const listRes = await fetch('https://node-rfbi.onrender.com/listSchools?latitude=37.6&longitude=-122.2');
     const schoolsList = await listRes.json();
     console.log('List Schools Response:');
     console.table(schoolsList);

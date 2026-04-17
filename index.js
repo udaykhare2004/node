@@ -7,7 +7,10 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Initialize database
+app.get('/', (req, res) => {
+  res.send('Welcome to the School Management API');
+});
+
 async function initDb() {
   try {
     const createTableQuery = `
@@ -26,20 +29,18 @@ async function initDb() {
   }
 }
 
-// Haversine distance calculation in JavaScript
 function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // Radius of the Earth in kilometers
+  const R = 6371;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
   const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c;
   return distance;
 }
 
-// POST /addSchool
 app.post('/addSchool', async (req, res) => {
   const { name, address, latitude, longitude } = req.body;
 
@@ -57,11 +58,11 @@ app.post('/addSchool', async (req, res) => {
     return res.status(400).json({ error: 'Invalid longitude. It must be a valid number.' });
   }
 
-  // Insert into DB
+
   try {
     const query = 'INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)';
     const [result] = await db.execute(query, [name.trim(), address.trim(), latitude, longitude]);
-    
+
     res.status(201).json({
       message: 'School added successfully',
       schoolId: result.insertId
@@ -72,7 +73,6 @@ app.post('/addSchool', async (req, res) => {
   }
 });
 
-// GET /listSchools
 app.get('/listSchools', async (req, res) => {
   const userLat = parseFloat(req.query.latitude);
   const userLon = parseFloat(req.query.longitude);
@@ -82,9 +82,6 @@ app.get('/listSchools', async (req, res) => {
   }
 
   try {
-    // Note: If you had thousands of rows, it would be better to offload this to the MySQL server
-    // e.g. using spatial functions or raw math in the SELECT. 
-    // Here we compute it in JS for simplicity, assuming a reasonable number of schools.
     const [schools] = await db.execute('SELECT * FROM schools');
 
     const schoolsWithDistance = schools.map(school => {
